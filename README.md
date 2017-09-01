@@ -1,5 +1,6 @@
 # Soshy-Mock
-A barebones User and Comments Mock Object Generator for use in testing or automated database generation
+A barebones User and Comments Mock Object Generator for use in testing or automated database generation.
+Still a work in progress but basic functionality of generating MockUsers and MockComments is already functional.
 
 ## Usage
 
