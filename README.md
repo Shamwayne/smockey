@@ -6,7 +6,7 @@ A barebones User and Comments Mock Object Generator for use in testing or automa
 To use the library, just import the relevant object from soshy
 
 ```python
-from soshy import MockUser, MockPost
+from soshy import MockUser, MockComment
 
 ```
 Importing a generator is just as simple
