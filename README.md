@@ -55,7 +55,8 @@ For Examples of how to use Soshy for generating database, check the test files. 
 
 ## Comming soon
 - Comments Documentation
-- Addition 
+- additional classes
+- how to extend the base classes
 
 
 
