@@ -1,4 +1,4 @@
-# Soshy-Mock
+# Soshy-Mock (now on v1.2)
 A barebones User and Comments Mock Object Generator for use in testing or automated database generation.
 Still a work in progress but basic functionality of generating MockUsers and MockComments is already functional.
 
@@ -7,23 +7,23 @@ Still a work in progress but basic functionality of generating MockUsers and Moc
 To use the library, just import the relevant object from soshy
 
 ```python
-from soshy import MockUser, MockComment
+from soshy import MkBasicUser, MockComment
 
 ```
 
 Importing a generator is just as simple
 
 ```python
-from soshy import genMockUsers, genMockComments
+from soshy import genBasicUsers, genMockComments
 ```
 
 ## Basic Examples
 
 To create a single user with data you specify, Just create a MockUser object with custom attribute values. e.g:
 ```python
-from soshy import MockUser
+from soshy import MkBasicUser
 
-john = MockUser("John", "john@somemail.com", "Male", "password123")
+john = MkBasicUser("John", "john@somemail.com", "Male", "password123")
 
 john.username # returns "John"
 john.email    # returns "john@somemail.com"
@@ -33,12 +33,12 @@ john.password # returns a hashed value of "password123" by default. To remove th
 
 But mostly this library was intented for creating a large amount of MockUser objects.
 Soshy was mainly intended for internal user for quickly populating an database with test data and for automated web testing
-To automate generating a list of MockUsers Objects, simple use the **genMockUsers()** command
+To automate generating a list of MockUsers Objects, simple use the **genBasicUsers()** command
 
 ```python
 from soshy import MockUser, genMockUsers
 
-users_list = genMockUsers()
+users_list = genBasicUsers()
 
 type(users_list) # returns <list object>
 len(users_list) # returns 10. the default number of MockUsers generated is 10
