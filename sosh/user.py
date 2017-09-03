@@ -1,11 +1,12 @@
 import hashlib
+import os
 from warnings import warn
 
 
-class MockUser:
+class MkBasicUser:
     """ A Mock User object for use in website/database testing. This is meant to
     be used in conjunction with the generateMockUsers function to create up to 1000
-    MockUser at a time.
+    MkBasicUser at a time.
 
     attributes: username (String Type) ,
                 email (String Type, if validate==True: uses if_email() to validate),
@@ -38,7 +39,7 @@ class MockUser:
         self.username = username
         self.gender = gender
         if validate == True:
-            # this checks whether the MockUser should validate  email or encrypt password
+            # this checks whether the MkBasicUser should validate  email or encrypt password
             self.email = self.is_email(email)
             self.password = self.hash512(password)
         else:
@@ -46,41 +47,55 @@ class MockUser:
             self.password = password
 
     def __repr__(self):
-        mockobj = "<MockUser => username={}, email={}, gender={}, password={} >"
+        mockobj = "<MkBasicUser => username={}, email={}, gender={}, password={} >"
         return mockobj.format(self.username, self.email, self.gender, self.password)
 
 
-def genMockUsers(number=10, set_validate=True):
-    """generates MockUser objects according to the number specified. 
+class MkUser(MkBasicUser):
+    def __init__(self, first_name, last_name, username, dob, email, gender, password, avatar_url):
+        super().__init__(self, username, email, gender, password)
+        self.firstname = first_name
+        self.lastname = last_name
+        self.dob = dob
+        self.avatar = avatar_url
+
+    def __repr__(self):
+        mockobj = "<MkUser (firstname:'{}', lastname:'{}', dob:'{}', username='{}', email={}, gender='{}',avatar:'{}'>"
+        return mockobj.format(self.firstname, self.lastname, self.dob, self.username, self.email, self.gender,
+                              self.avatar)
+
+
+def genBasicUsers(number=10, set_validate=True):
+    """generates MkBasicUser objects according to the number specified.
     attributes: number (Integer Type, default=10, max=1000), 
                 set_validate (Boolean Type, default=True)
 
-    if no number is specified it defaults to making 10 MockUser Objects.
+    if no number is specified it defaults to making 10 MkBasicUser Objects.
     However the max number of users it can create at this point in time is 1000 unique
     users, any more above that and it will raise an error.
     """
     if number > 1000:
         warn(
-            "WARNING: cannot generate more than 1000 MockUsers at one instance, creating 1000 MockUser Objects instead")
+            "WARNING: cannot generate more than 1000 MockUsers at one instance, creating 1000 MkBasicUser Objects instead")
         number = 1000
-    users_csv = open("social_users.csv", "r")
+    USER_SOURCE = os.path.join(os.path.dirname(__file__), "social_users.csv")
+    users_csv = open(USER_SOURCE, "r")
     headers = users_csv.readline()  # ignore headers
     print(headers)
     mock_store = []
     for i in range(number):
         raw_data = users_csv.readline()
         data = raw_data.strip().split(sep=",")
-        new_user = MockUser(username=data[0], email=data[1], gender=data[2], password=data[3], validate=set_validate)
+        new_user = MkBasicUser(username=data[0], email=data[1], gender=data[2], password=data[3], validate=set_validate)
         mock_store.append(new_user)
     return mock_store
 
 
 if __name__ == '__main__':
-    # a_user = MockUser()
-    # b_user = MockUser("Thomas", "tom@tom.com", "Male", "password123")
+    b_user = MkBasicUser("Thomas", "tom@tom.com", "Male", "password123")
     # print(b_user)
-    # c_user = MockUser("C bear", "cbear.com", "Male", "open_sesame!")
-    x = genMockUsers()
-    print(x)
-    # y = generateMockUsers(100, True)
-    # users = generateMockUsers(2500, False)
+    # c_user = MkBasicUser("C bear", "cbear.com", "Male", "open_sesame!")
+    x = genBasicUsers()
+    # print(x)
+    # y = geBasicUsers(100, True)
+    # users = genBasicUsers(2500, False)
