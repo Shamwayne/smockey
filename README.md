@@ -36,7 +36,7 @@ Soshy was mainly intended for internal user for quickly populating an database w
 To automate generating a list of MockUsers Objects, simple use the **genBasicUsers()** command
 
 ```python
-from soshy import MockUser, genMockUsers
+from soshy import MkBasicUser, genBasicUsers
 
 users_list = genBasicUsers()
 
