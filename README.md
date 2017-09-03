@@ -1,4 +1,4 @@
-# Soshy-Mock (now on v1.2)
+# Soshy-Mock (now on v0.2.2)
 A barebones User and Comments Mock Object Generator for use in testing or automated database generation.
 Still a work in progress but basic functionality of generating MockUsers and MockComments is already functional.
 
@@ -53,7 +53,7 @@ users_list[0].gender # "Male"
 For Examples of how to use Soshy for generating database, check the test files. Basic implementation details are outlined both for SqlAlchemy as well as mongoengine.
 
 
-## Comming soon
+## Coming soon
 - Comments Documentation
 - additional classes
 - how to extend the base classes
