@@ -50,7 +50,12 @@ users_list[0].username # returns "rjuszczak0"
 users_list[0].gender # "Male"
 ```
 
+For Examples of how to use Soshy for generating database, check the test files. Basic implementation details are outlined both for SqlAlchemy as well as mongoengine.
 
+
+## Comming soon
+- Comments Documentation
+- Addition 
 
 
 
